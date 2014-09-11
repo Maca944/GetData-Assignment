@@ -3,18 +3,19 @@ title: "README"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The raw data can be found here: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+The follwing unzipped local files are read into memory:
+features.txt
+activity_labels.txt
+X_train.txt
+y_train.txt
+subject_train.txt
+X_test.txt
+y_test.txt
+subject_test.txt
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+The Subjects, Labels and Data are combined for the Train and Test set, after which the two sets are combined.
+Then the column names are added, only the columnnames with mean or std are selected and the column names are cleaned. 
 
-```{r}
-summary(cars)
-```
+Finally the average for each variable is calculated and the result is written to 'TidyDataSet.txt.'
 
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
