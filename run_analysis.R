@@ -22,10 +22,10 @@ library(dplyr)
 # read all the text files and put them in memory
 Features       <- data.frame(read.table("features.txt", stringsAsFactors = FALSE)[,2])
 Activity       <- read.table("./activity_labels.txt")
-TrainData      <- read.table("./train/X_train.txt") #no headers
+TrainData      <- read.table("./train/X_train.txt") 
 TrainLabels    <- read.table("./train/y_train.txt")
 TrainSubjects  <- read.table("./train/subject_train.txt")
-TestData       <- read.table("./test/X_test.txt") #no headers
+TestData       <- read.table("./test/X_test.txt") 
 TestLabels     <- read.table("./test/y_test.txt")
 TestSubjects   <- read.table("./test/subject_test.txt")
 
@@ -51,19 +51,26 @@ colnames(Activity) <- c("ActivityNumber","ActivityDescription")
 AllData           <- data.frame(cbind(AllData[,1:2]), 
                        AllData[, grepl("mean()", names(AllData))], 
                        AllData[, grepl("std()", names(AllData))]) 
-AllData            <- merge(Activity, AllData, by='ActivityNumber')
 
 # 3. Uses descriptive activity names to name the activities in the data set
+AllData            <- merge(Activity, AllData, by='ActivityNumber')
+
+#get rid of the Activity Numbers, which are redundant imo
+AllData$ActivityNumber <- NULL 
+
+# 4. Appropriately labels the data set with descriptive variable names
+# Honestly, all the colnames are ugly, I don't have enough feeling with this field to make them pretty.
+names(AllData) <- gsub("std()","Stdev", names(AllData))
+names(AllData) <- gsub("^(t)","Time", names(AllData))
+names(AllData) <- gsub("^(f)","Freqdomainsignals", names(AllData))
+names(AllData) <- gsub("Acc","Acceleration", names(AllData))
+names(AllData) <- gsub("Mag","Magnitude", names(AllData))
+names(AllData) <- gsub("[.]","",names(AllData))
+
+# 5. From the data set in step 4, creates a second, independent tidy data set with the average 
+# of each variable for each activity and each subject. 
 AllDataTbl <- tbl_df(AllData)
 AllDataTbl <- group_by(AllDataTbl, Subjects, ActivityDescription)
 Output     <- summarise_each(AllDataTbl, funs(mean))
 
-#get rid of the Activity Numbers, which are redundant imo
-Output$ActivityNumber <- NULL 
-
-# 4. Appropriately labels the data set with descriptive variable names
-
-
-# 5. From the data set in step 4, creates a second, independent tidy data set with the average 
-# of each variable for each activity and each subject.
 write.table(Output, file="TidyDataSet.txt", row.name=FALSE)
