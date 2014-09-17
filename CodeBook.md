@@ -1,7 +1,7 @@
----
-title: "CodeBook"
-output: html_document
----
+
+## CodeBook
+
+
 
 The raw data can be found here: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 The following unzipped local files are read into memory: features.txt, activity_labels.txt, X_train.txt, y_train.txt, subject_train.txt, X_test.txt, y_test.txt and subject_test.txt.
