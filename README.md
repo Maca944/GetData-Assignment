@@ -23,7 +23,7 @@ Features.txt contains the names of all the labels used. The description of the a
 
 ## The Script
 
-The script that uses the abovementionned files and returns a tidy dataset as output can be found in run_analysis.R. The .zip file containing the dataset must be unpacked to the working directory c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
+The script that uses the files mentioned above and returns a tidy dataset as output can be found in run_analysis.R. The .zip file containing the dataset must be unpacked to the working directory c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
 
 Note that the script uses the package 'dplyr'. If this script is not yet installed please run install.packages("dplyr").
 
