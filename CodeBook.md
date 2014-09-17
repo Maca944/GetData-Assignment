@@ -41,7 +41,7 @@ The script performs the following steps.
 11. create a data set with the average of each variable for each activity and each subject
 12. save the data set as "TidyDataSet.txt"
 
-ad 10 the follwing changes are made to the column names:
+ad 10 the following changes are made to the column names:
 * std() is replaced by Stdev
 * t is replaced by time
 * f is replaced by Freqdomainsignals
