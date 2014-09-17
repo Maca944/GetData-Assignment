@@ -25,6 +25,8 @@ Features.txt contains the names of all the labels used. The description of the a
 
 The script that uses the abovementionned files and returns a tidy dataset as output can be found in run_analysis.R. The .zip file containing the dataset must be unpacked to the working directory c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
 
+Note that the script uses the package 'dplyr'. If this script is not yet installed please run install.packages("dplyr").
+
 The script reads the data, merges the train and the test set, selects only the columns which have to do with either the mean or the standard deviation, names the columns and replaces the activity label numbers by their description. Finally, the average value of each variable is calculated and saved as a tidy dataset names TidyDataSet.txt (tab-separated). This file can be found in this repository.
 
 ## The Code Book
