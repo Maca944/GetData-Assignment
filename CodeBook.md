@@ -27,6 +27,8 @@ For more details I refer to the original README.txt file in the dataset.
 
 The script performs the following steps.
 1. set the working directory to c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
+
+1. set the working directory to c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
 2. load the dplyr package
 3. read all the text files and put them in memory
 4. add the subjects and the labels to the data
