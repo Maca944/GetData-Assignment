@@ -33,7 +33,7 @@ TestSubjects   <- read.table("./test/subject_test.txt")
 Train    <- cbind(TrainSubjects, TrainLabels, TrainData) 
 Test     <- cbind(TestSubjects, TestLabels, TestData) 
 
-# Step 1: Merges the training and the test sets to create one data set.
+# Step 1: Merges the training and the test sets to create one data set
 AllData  <- rbind(Train, Test) 
 
 #add Subjects and Activity as column names
@@ -47,7 +47,7 @@ Features          <- rbind(Header, Features)
 colnames(AllData) <- Features[,1] 
 colnames(Activity) <- c("ActivityNumber","ActivityDescription")
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+# 2. Extracts only the measurements on the mean and standard deviation for each measurement
 AllData           <- data.frame(cbind(AllData[,1:2]), 
                        AllData[, grepl("mean()", names(AllData))], 
                        AllData[, grepl("std()", names(AllData))]) 
@@ -55,11 +55,11 @@ AllData           <- data.frame(cbind(AllData[,1:2]),
 # 3. Uses descriptive activity names to name the activities in the data set
 AllData            <- merge(Activity, AllData, by='ActivityNumber')
 
-#get rid of the Activity Numbers, which are redundant imo
+# get rid of the Activity Numbers, which are redundant imo
 AllData$ActivityNumber <- NULL 
 
 # 4. Appropriately labels the data set with descriptive variable names
-# Honestly, all the colnames are ugly, I don't have enough feeling with this field to make them pretty.
+# Honestly, all the colnames are ugly, I don't have enough feeling with this field to make them pretty
 names(AllData) <- gsub("std()","Stdev", names(AllData))
 names(AllData) <- gsub("^(t)","Time", names(AllData))
 names(AllData) <- gsub("^(f)","Freqdomainsignals", names(AllData))
@@ -68,7 +68,7 @@ names(AllData) <- gsub("Mag","Magnitude", names(AllData))
 names(AllData) <- gsub("[.]","",names(AllData))
 
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average 
-# of each variable for each activity and each subject. 
+# of each variable for each activity and each subject
 AllDataTbl <- tbl_df(AllData)
 AllDataTbl <- group_by(AllDataTbl, Subjects, ActivityDescription)
 Output     <- summarise_each(AllDataTbl, funs(mean))
