@@ -23,14 +23,28 @@ Note that features are normalized and bounded within [-1,1].
 
 For more details I refer to the original README.txt file in the dataset.
 
-The Subjects, Labels and Data are combined for the Train and Test set, after which the two sets are combined. Then the column names are added. The column names are appropriatelly labeled as follows:
+### Cleaning the data
+
+The script performs the following steps.
+1. set the working directory to c:/maca/Rdata/GetData-Assignment/UCI Har Dataset/
+2. load the dplyr package
+3. read all the text files and put them in memory
+4. add the subjects and the labels to the data
+5. merge the training and the test sets to create one data set
+6. add column names
+7. extract only the measurements on the mean and standard deviation for each measurement
+8. uses descriptive activity names to name the activities in the data set
+9. get rid of the Activity Numbers
+10. appropriately label the data set with descriptive variable names
+11. create a data set with the average of each variable for each activity and each subject
+12. save the data set as "TidyDataSet.txt"
+
+ad 10 the follwing changes are made to the column names:
 * std() is replaced by Stdev
 * t is replaced by time
 * f is replaced by Freqdomainsignals
 * Acc is replaced by Acceleration
 * Mag is replaced by Magnitude
 * all dots are removed
-Only the columnnames with mean or std are selected and the column names are cleaned.
 
-Finally the average for each variable is calculated and the result is written to 'TidyDataSet.txt.'
 
